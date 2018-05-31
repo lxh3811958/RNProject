@@ -20,47 +20,13 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-class ShowImg extends Component{
-    render() {
-        let pic = {
-            uri: 'https://home-assist.oss-cn-hangzhou.aliyuncs.com/img/banner/banner_banner_05.png1527648197073.png'
-        };
-        return (
-            <Image source={pic} style={styles.img} />
-        )
-    }
-}
-
-class BodyText extends Component{
-    constructor (props) {
-        super(props);
-        this.state = { showText: true };
-
-        setInterval(() => {
-            this.setState(previousState => {
-                return {showText: !previousState.showText}
-            })
-        },1000);
-    }
-    render(){
-        let text = this.state.showText ? this.props.name : '';
-        return(
-            <Text style={styles.bodyText}>
-                {text}
-            </Text>
-        )
-    }
-}
-
 export default class App extends Component{
     render() {
         return(
             <View style={styles.view}>
-                <Text style={styles.head}>
-                    欢迎欢迎！热烈欢迎！
-                </Text>
-                <BodyText name='123' />
-                <ShowImg />
+                <View style={styles.view1}></View>
+                <View style={styles.view2}></View>
+                <View style={styles.view3}></View>
             </View>
         )
     }
@@ -69,20 +35,20 @@ export default class App extends Component{
 const styles = StyleSheet.create({
     view: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'stretch',
     },
-    head: {
-        fontSize: 20,
-        color: 'red',
+    view1: {
         flex: 1,
+        backgroundColor: '#dadada',
     },
-    bodyText: {
-        fontSize: 30,
-        color: 'green',
-        flex: 2,
+    view2: {
+        flex: 1,
+        backgroundColor: 'red',
     },
-    img: {
-        width: 150,
-        height: 100,
-//        flex: 1,
+    view3: {
+        flex: 1,
+        backgroundColor: 'blue',
     }
 });
