@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TextInput
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -21,34 +22,33 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component{
+    constructor (props) {
+        super(props);
+        this.state = { text: ''};
+    }
     render() {
         return(
-            <View style={styles.view}>
-                <View style={styles.view1}></View>
-                <View style={styles.view2}></View>
-                <View style={styles.view3}></View>
+            <View>
+                <TextInput style={styles.textInput} placeholder='123' onChangeText={(text) => {this.setState({text})}} />
+                <Text style={styles.text}>
+                    {this.state.text.split(' ').map( (text) => text && '1' ).join(' ')}
+                </Text>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    view: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'stretch',
+    textInput: {
+        width: 100,
+        height: 50,
     },
-    view1: {
-        flex: 1,
+    text: {
+        padding:10,
+        fontSize: 30,
+        width: 200,
+        height: 100,
         backgroundColor: '#dadada',
-    },
-    view2: {
-        flex: 1,
-        backgroundColor: 'red',
-    },
-    view3: {
-        flex: 1,
-        backgroundColor: 'blue',
+        color: 'black',
     }
 });
