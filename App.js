@@ -22,21 +22,56 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component{
-    constructor (props) {
+    constructor(props) {
         super(props);
-        this.state = { text: ''};
+        this.state = ({
+            sum: 0,
+            sum1: 0,
+            content: '',
+            msg: '',
+        })
     }
+
+    componentDidMount() {
+        this.interval = setInterval (() => {
+            this.setState({
+                sum: this.state.sum + 1,
+            });
+        }, 500);
+        this.interval_two = setInterval(() => {
+            this.setState({
+                sum1: this.state.sum1 + 2,
+            });
+        },1000);
+        this.timer = setTimeout(() => {
+           this.setState({
+               content: 'one',
+           });
+        }, 500);
+        this.timer_two = setTimeout(() => {
+            this.setState({
+               msg: 'two',
+            });
+        },3000);
+    }
+
+    componentWillUnmount() {
+        // this.interval && clearInterval(this.interval);
+        this.timer_two && this.timer;
+    }
+
     render() {
         return(
             <View>
-                <TextInput style={styles.textInput} placeholder='123' onChangeText={(text) => {this.setState({text})}} />
-                <Text style={styles.text}>
-                    {this.state.text.split(' ').map( (text) => text && '1' ).join(' ')}
-                </Text>
+                <Text style={styles.text}>{this.state.sum}</Text>
+                <Text style={styles.text}>{this.state.sum1}</Text>
+                <Text style={styles.text}>{this.state.content}</Text>
+                <Text style={styles.text}>{this.state.msg}</Text>
             </View>
         )
     }
 }
+
 
 const styles = StyleSheet.create({
     textInput: {
