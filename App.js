@@ -20,7 +20,7 @@ const instructions = Platform.select({
 });
 
 
-export default class App extends React.Component<Props.states> {
+export default class App extends React.Component<Props,State> {
     constructor(props: Props) {
         super(props);
         this.state = ({
