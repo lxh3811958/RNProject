@@ -9,9 +9,7 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View,
-  Image,
-  TextInput,Button
+  View, FlatList,TextInput,Picker
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -21,46 +19,24 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component {
-    constructor(props) {
+
+export default class App extends React.Component<Props.states> {
+    constructor(props: Props) {
         super(props);
-        this.state= ({
-            sum: 0,
-            sum1: 1,
-            content: '',
-            msg: '',
+        this.state = ({
+           language: 'two'
         });
-    }
-
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
     }
 
     render() {
         return(
-            <View>
-                <Button color='#dadada' title='12' onPress={() => {
-                    this.setState({
-                        sum: this.state.sum + 1,
-                    });
-                }} />
-                <Button color='pink' title='start' onPress={() => {
-                    this.interval = setInterval(() =>{
-                        this.setState({
-                            sum1: this.state.sum1 + 1,
-                        });
-                    },1000)
-                }} />
-                <Button color='blue' title='end' onPress={() => {
-                    this.interval && clearInterval(this.interval);
-                }} />
-                <Text style={{fontSize:40}}>{this.state.sum}</Text>
-                <Text style={{fontSize:40}}>{this.state.sum1}</Text>
-            </View>
+            <Picker
+                selectedValue={this.state.language}
+                onValueChange={(itemValue,itemIndex) => {this.setState({language:itemValue})}}>
+                <Picker.Item label='1' value='one' />
+                <Picker.Item label='2' value='two' />
+                <Picker.Item label='3' value='three' />
+            </Picker>
         )
     }
 }
