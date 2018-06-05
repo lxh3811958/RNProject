@@ -11,7 +11,7 @@ import {
   Text,
   View,
   Image,
-  TextInput
+  TextInput,Button
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -21,69 +21,35 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component{
+export default class App extends Component {
     constructor(props) {
         super(props);
-        this.state = ({
+        this.state= ({
             sum: 0,
-            sum1: 0,
+            sum1: 1,
             content: '',
             msg: '',
-        })
+        });
     }
 
     componentDidMount() {
-        this.interval = setInterval (() => {
-            this.setState({
-                sum: this.state.sum + 1,
-            });
-        }, 500);
-        this.interval_two = setInterval(() => {
-            this.setState({
-                sum1: this.state.sum1 + 2,
-            });
-        },1000);
-        this.timer = setTimeout(() => {
-           this.setState({
-               content: 'one',
-           });
-        }, 500);
-        this.timer_two = setTimeout(() => {
-            this.setState({
-               msg: 'two',
-            });
-        },3000);
+
     }
 
     componentWillUnmount() {
-        // this.interval && clearInterval(this.interval);
-        this.timer_two && this.timer;
+
     }
 
     render() {
         return(
             <View>
-                <Text style={styles.text}>{this.state.sum}</Text>
-                <Text style={styles.text}>{this.state.sum1}</Text>
-                <Text style={styles.text}>{this.state.content}</Text>
-                <Text style={styles.text}>{this.state.msg}</Text>
+                <Button color='#dadada' title='12' onPress={() => {
+                    this.setState({
+                        sum: this.state.sum + 1,
+                    });
+                }} />
+                <Text style={{fontSize:40}}>{this.state.sum}</Text>
             </View>
         )
     }
 }
-
-
-const styles = StyleSheet.create({
-    textInput: {
-        width: 100,
-        height: 50,
-    },
-    text: {
-        padding:10,
-        fontSize: 30,
-        width: 200,
-        height: 100,
-        backgroundColor: '#dadada',
-        color: 'black',
-    }
-});
