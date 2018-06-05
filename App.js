@@ -48,7 +48,18 @@ export default class App extends Component {
                         sum: this.state.sum + 1,
                     });
                 }} />
+                <Button color='pink' title='start' onPress={() => {
+                    this.interval = setInterval(() =>{
+                        this.setState({
+                            sum1: this.state.sum1 + 1,
+                        });
+                    },1000)
+                }} />
+                <Button color='blue' title='end' onPress={() => {
+                    this.interval && clearInterval(this.interval);
+                }} />
                 <Text style={{fontSize:40}}>{this.state.sum}</Text>
+                <Text style={{fontSize:40}}>{this.state.sum1}</Text>
             </View>
         )
     }
